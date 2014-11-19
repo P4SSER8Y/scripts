@@ -1,3 +1,16 @@
+/*
+AUTHOR: Sjc1000
+PAGE: http://www.autohotkey.com/board/topic/88114-functioneznotify/
+
+USAGE:
+    EzNotify(Title,Message,Background Colour,Text Colour,Time to display the message in milliseconds)
+
+EXAMPLE:
+    EzNotify("Test","This is just a simple test","Blue","White","4000") 
+    EzNotify("Test","This is just a simple test`nTake 2","Black","Red","4000")
+    EzNotify("Test","This is just a simple test`nTake 3","Red","White","4000") 
+*/
+
 EzNotify(Title,Message,BackColor,TextColor,Timeout=2000)
 {
 	Gui, EZ: Color, %BackColor%
