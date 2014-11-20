@@ -1,154 +1,112 @@
 /*
-     Author:  Troy
-     Version: 
-     v0.1:    2014-11-18 Test & left hand only
+    Name: Parallel Typing Assistant
+    Author:  Troy
+    Version: 
+        v0.2;   2014-11-20 Use RegEx instead of if expr; main algo finished
+        v0.1:   2014-11-18 Test & left hand only
 */
 
 #SingleInstance
 #MaxHotkeysPerInterval 200
 
+LST=QWERTASDFGZXCVBYUIOPHJKL1NM234
+LUT=ABCDEFGHIJKLMNOPQRSTUVWXYZ1234 
+
+SetBatchLines -1
+
 KeyCnt=0
 KeyBit=0
 goto FnEvent
+sleep ,1000
 return
 
 FnEvent:
     if (KeyCnt==0){
-        KeyOutput=
-		if ((KeyBit&(1<<3))&&(KeyBit&(1<<5)))
-		{
-			KeyOutput=%KeyOutput%y
-			KeyBit:=KeyBit&(2147483647^((1<<3)|(1<<5)))
-		}
-		if ((KeyBit&(1<<3))&&(KeyBit&(1<<21)))
-		{
-			KeyOutput=%KeyOutput%u
-			KeyBit:=KeyBit&(2147483647^((1<<3)|(1<<21)))
-		}
-		if ((KeyBit&(1<<5))&&(KeyBit&(1<<18)))
-		{
-			KeyOutput=%KeyOutput%i
-			KeyBit:=KeyBit&(2147483647^((1<<5)|(1<<18)))
-		}
-		if ((KeyBit&(1<<3))&&(KeyBit&(1<<18)))
-		{
-			KeyOutput=%KeyOutput%o
-			KeyBit:=KeyBit&(2147483647^((1<<3)|(1<<18)))
-		}
-		if ((KeyBit&(1<<2))&&(KeyBit&(1<<23)))
-		{
-			KeyOutput=%KeyOutput%p
-			KeyBit:=KeyBit&(2147483647^((1<<2)|(1<<23)))
-		}
-		if ((KeyBit&(1<<4))&&(KeyBit&(1<<17)))
-		{
-			KeyOutput=%KeyOutput%h
-			KeyBit:=KeyBit&(2147483647^((1<<4)|(1<<17)))
-		}
-		if ((KeyBit&(1<<4))&&(KeyBit&(1<<5)))
-		{
-			KeyOutput=%KeyOutput%j
-			KeyBit:=KeyBit&(2147483647^((1<<4)|(1<<5)))
-		}
-		if ((KeyBit&(1<<17))&&(KeyBit&(1<<22)))
-		{
-			KeyOutput=%KeyOutput%k
-			KeyBit:=KeyBit&(2147483647^((1<<17)|(1<<22)))
-		}
-		if ((KeyBit&(1<<4))&&(KeyBit&(1<<22)))
-		{
-			KeyOutput=%KeyOutput%l
-			KeyBit:=KeyBit&(2147483647^((1<<4)|(1<<22)))
-		}
-		if ((KeyBit&(1<<2))&&(KeyBit&(1<<21)))
-		{
-			KeyOutput=%KeyOutput%n
-			KeyBit:=KeyBit&(2147483647^((1<<2)|(1<<21)))
-		}
-		if ((KeyBit&(1<<21))&&(KeyBit&(1<<23)))
-		{
-			KeyOutput=%KeyOutput%m
-			KeyBit:=KeyBit&(2147483647^((1<<21)|(1<<23)))
-		}
-		if (KeyBit&(1<<16))
-		{
-			KeyOutput=%KeyOutput%q
-			KeyBit:=KeyBit&(2147483647^(1<<16))
-		}
-		if (KeyBit&(1<<22))
-		{
-			KeyOutput=%KeyOutput%w
-			KeyBit:=KeyBit&(2147483647^(1<<22))
-		}
-		if (KeyBit&(1<<4))
-		{
-			KeyOutput=%KeyOutput%e
-			KeyBit:=KeyBit&(2147483647^(1<<4))
-		}
-		if (KeyBit&(1<<17))
-		{
-			KeyOutput=%KeyOutput%r
-			KeyBit:=KeyBit&(2147483647^(1<<17))
-		}
-		if (KeyBit&(1<<19))
-		{
-			KeyOutput=%KeyOutput%t
-			KeyBit:=KeyBit&(2147483647^(1<<19))
-		}
-		if (KeyBit&(1<<0))
-		{
-			KeyOutput=%KeyOutput%a
-			KeyBit:=KeyBit&(2147483647^(1<<0))
-		}
-		if (KeyBit&(1<<18))
-		{
-			KeyOutput=%KeyOutput%s
-			KeyBit:=KeyBit&(2147483647^(1<<18))
-		}
-		if (KeyBit&(1<<3))
-		{
-			KeyOutput=%KeyOutput%d
-			KeyBit:=KeyBit&(2147483647^(1<<3))
-		}
-		if (KeyBit&(1<<5))
-		{
-			KeyOutput=%KeyOutput%f
-			KeyBit:=KeyBit&(2147483647^(1<<5))
-		}
-		if (KeyBit&(1<<6))
-		{
-			KeyOutput=%KeyOutput%g
-			KeyBit:=KeyBit&(2147483647^(1<<6))
-		}
-		if (KeyBit&(1<<25))
-		{
-			KeyOutput=%KeyOutput%z
-			KeyBit:=KeyBit&(2147483647^(1<<25))
-		}
-		if (KeyBit&(1<<23))
-		{
-			KeyOutput=%KeyOutput%x
-			KeyBit:=KeyBit&(2147483647^(1<<23))
-		}
-		if (KeyBit&(1<<2))
-		{
-			KeyOutput=%KeyOutput%c
-			KeyBit:=KeyBit&(2147483647^(1<<2))
-		}
-		if (KeyBit&(1<<21))
-		{
-			KeyOutput=%KeyOutput%v
-			KeyBit:=KeyBit&(2147483647^(1<<21))
-		}
-		if (KeyBit&(1<<1))
-		{
-			KeyOutput=%KeyOutput%b
-			KeyBit:=KeyBit&(2147483647^(1<<1))
-		}
-        StringLen,len,KeyOutput
-        if (len==1)
-            Send, %KeyOutput%
-        KeyBit:=0
+        KeyOutput=%LST%
+        i=0
+        while (i<31)
+        {
+            if (!(KeyBit&(1<<i)))
+            {
+                tmp:=SubStr(LUT,(i+1),1)
+                StringReplace, KeyOutput, KeyOutput, %tmp%
+            }
+            i+=1
+        }
+        KeyBit=0
+
+        ; Left-hand Side
+        KeyOutput:=RegExReplace(KeyOutput,"^DF","y")
+        KeyOutput:=RegExReplace(KeyOutput,"^DV","u")
+        KeyOutput:=RegExReplace(KeyOutput,"^SF","i")
+        KeyOutput:=RegExReplace(KeyOutput,"^SD","o")
+        KeyOutput:=RegExReplace(KeyOutput,"^XC","p")
+        KeyOutput:=RegExReplace(KeyOutput,"^ER","h")
+        KeyOutput:=RegExReplace(KeyOutput,"^EF","j")
+        KeyOutput:=RegExReplace(KeyOutput,"^WR","k")
+        KeyOutput:=RegExReplace(KeyOutput,"^WE","l")
+        KeyOutput:=RegExReplace(KeyOutput,"^CV","n")
+        KeyOutput:=RegExReplace(KeyOutput,"^XV","m")
+        KeyOutput:=RegExReplace(KeyOutput,"^Q","q")
+        KeyOutput:=RegExReplace(KeyOutput,"^W","w")
+        KeyOutput:=RegExReplace(KeyOutput,"^E","e")
+        KeyOutput:=RegExReplace(KeyOutput,"^R","r")
+        KeyOutput:=RegExReplace(KeyOutput,"^T","t")
+        KeyOutput:=RegExReplace(KeyOutput,"^A","a")
+        KeyOutput:=RegExReplace(KeyOutput,"^S","s")
+        KeyOutput:=RegExReplace(KeyOutput,"^D","d")
+        KeyOutput:=RegExReplace(KeyOutput,"^F","f")
+        KeyOutput:=RegExReplace(KeyOutput,"^G","g")
+        KeyOutput:=RegExReplace(KeyOutput,"^Z","z")
+        KeyOutput:=RegExReplace(KeyOutput,"^X","x")
+        KeyOutput:=RegExReplace(KeyOutput,"^C","c")
+        KeyOutput:=RegExReplace(KeyOutput,"^V","v")
+        KeyOutput:=RegExReplace(KeyOutput,"^B","b")
+
+        ; Right-hand Side
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)23$","p")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)KL$","o")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)JL$","i")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)KM$","u")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)JK$","y")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)IO$","l")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)UO$","k")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)IJ$","j")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)UI$","h")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)M3$","m")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)M2$","n")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)3$","x")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)4$","z")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)Y$","t")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)U$","r")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)I$","e")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)O$","w")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)P$","q")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)H$","g")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)J$","f")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)K$","d")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)L$","s")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)1$","a")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)N$","b")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)M$","v")
+        KeyOutput:=RegExReplace(KeyOutput,"(?!^)2$","c")
+
+        ; Symbols
+        KeyOutput:=RegExReplace(KeyOutput,"^1$",";")
+        KeyOutput:=RegExReplace(KeyOutput,"^2$",",")
+        KeyOutput:=RegExReplace(KeyOutput,"^3$",".")
+        KeyOutput:=RegExReplace(KeyOutput,"^4$","/")
+        KeyOutput:=RegExReplace(KeyOutput,"^Y$","@")
+        KeyOutput:=RegExReplace(KeyOutput,"^U$","^")
+        KeyOutput:=RegExReplace(KeyOutput,"^I$","!")
+        KeyOutput:=RegExReplace(KeyOutput,"^O$","?")
+        KeyOutput:=RegExReplace(KeyOutput,"^P$","~")
+        KeyOutput:=RegExReplace(KeyOutput,"^N$","(")
+        KeyOutput:=RegExReplace(KeyOutput,"^M$",")")
+
+        if RegExMatch(KeyOutput,"[A-Z0-9]")
+            return
+        Send, %KeyOutput%
     }
 return
 
@@ -158,7 +116,6 @@ a::
     Pa=1
     KeyCnt+=1
     KeyBit:=KeyBit|(1<<0)
-    gosub FnEvent
 return
 
 a UP::
@@ -173,7 +130,6 @@ b::
     Pb=1
     KeyCnt+=1
     KeyBit:=KeyBit|(1<<1)
-    gosub FnEvent
 return
 
 b UP::
@@ -188,7 +144,6 @@ c::
     Pc=1
     KeyCnt+=1
     KeyBit:=KeyBit|(1<<2)
-    gosub FnEvent
 return
 
 c UP::
@@ -203,7 +158,6 @@ d::
     Pd=1
     KeyCnt+=1
     KeyBit:=KeyBit|(1<<3)
-    gosub FnEvent
 return
 
 d UP::
@@ -218,7 +172,6 @@ e::
     Pe=1
     KeyCnt+=1
     KeyBit:=KeyBit|(1<<4)
-    gosub FnEvent
 return
 
 e UP::
@@ -233,7 +186,6 @@ f::
 	Pf=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<5)
-	gosub FnEvent
 return
 
 f UP::
@@ -248,7 +200,6 @@ g::
 	Pg=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<6)
-	gosub FnEvent
 return
 
 g UP::
@@ -263,7 +214,6 @@ h::
 	Ph=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<7)
-	gosub FnEvent
 return
 
 h UP::
@@ -278,7 +228,6 @@ i::
 	Pi=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<8)
-	gosub FnEvent
 return
 
 i UP::
@@ -293,7 +242,6 @@ j::
 	Pj=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<9)
-	gosub FnEvent
 return
 
 j UP::
@@ -308,7 +256,6 @@ k::
 	Pk=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<10)
-	gosub FnEvent
 return
 
 k UP::
@@ -323,7 +270,6 @@ l::
 	Pl=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<11)
-	gosub FnEvent
 return
 
 l UP::
@@ -338,7 +284,6 @@ m::
 	Pm=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<12)
-	gosub FnEvent
 return
 
 m UP::
@@ -353,7 +298,6 @@ n::
 	Pn=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<13)
-	gosub FnEvent
 return
 
 n UP::
@@ -368,7 +312,6 @@ o::
 	Po=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<14)
-	gosub FnEvent
 return
 
 o UP::
@@ -383,7 +326,6 @@ p::
 	Pp=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<15)
-	gosub FnEvent
 return
 
 p UP::
@@ -398,7 +340,6 @@ q::
 	Pq=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<16)
-	gosub FnEvent
 return
 
 q UP::
@@ -413,7 +354,6 @@ r::
 	Pr=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<17)
-	gosub FnEvent
 return
 
 r UP::
@@ -428,7 +368,6 @@ s::
 	Ps=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<18)
-	gosub FnEvent
 return
 
 s UP::
@@ -443,7 +382,6 @@ t::
 	Pt=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<19)
-	gosub FnEvent
 return
 
 t UP::
@@ -458,7 +396,6 @@ u::
 	Pu=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<20)
-	gosub FnEvent
 return
 
 u UP::
@@ -473,7 +410,6 @@ v::
 	Pv=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<21)
-	gosub FnEvent
 return
 
 v UP::
@@ -488,7 +424,6 @@ w::
 	Pw=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<22)
-	gosub FnEvent
 return
 
 w UP::
@@ -503,7 +438,6 @@ x::
 	Px=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<23)
-	gosub FnEvent
 return
 
 x UP::
@@ -518,7 +452,6 @@ y::
 	Py=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<24)
-	gosub FnEvent
 return
 
 y UP::
@@ -533,7 +466,6 @@ z::
 	Pz=1
 	KeyCnt+=1
 	KeyBit:=KeyBit|(1<<25)
-	gosub FnEvent
 return
 
 z UP::
@@ -542,3 +474,62 @@ z UP::
 	gosub FnEvent
 return
 
+SC027::
+    if Psemicolon
+        return
+    Psemicolon=1
+    KeyCnt+=1
+    KeyBit:=KeyBit|(1<<26)
+return
+
+SC027 UP::
+    Psemicolon=0
+    KeyCnt-=1
+    gosub FnEvent
+return
+
+SC033::
+    if Pcomma
+        return
+    Pcomma=1
+    KeyCnt+=1
+    KeyBit:=KeyBit|(1<<27)
+return
+
+SC033 UP::
+    Pcomma=0
+    KeyCnt-=1
+    gosub FnEvent
+return
+
+SC034::
+    if Pdot
+        return
+    Pdot=1
+    KeyCnt+=1
+    KeyBit:=KeyBit|(1<<28)
+return
+
+SC034 UP::
+    Pdot=0
+    KeyCnt-=1
+    gosub FnEvent
+return
+
+SC035::
+    if Pslash
+        return
+    Pslash=1
+    KeyCnt+=1
+    KeyBit:=KeyBit|(1<<29)
+return
+
+SC035 UP::
+    Pslash=0
+    KeyCnt-=1
+    gosub FnEvent
+return
+
+#t::
+    suspend
+return
