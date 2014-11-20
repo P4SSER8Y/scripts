@@ -1,0 +1,13 @@
+/* Baidu ads cleaner
+ * Troy
+ */
+
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("www.baidu.com") {
+  div[id="content_right"]{display:none !important;}
+  p.op-soft-normal-tip{display:none;}
+  a[class^="c-btn"]{display:none;}
+  p[class="to_tieba"]{display:none !important;}
+  div[id="s_icons"]{display:none !important;}
+}

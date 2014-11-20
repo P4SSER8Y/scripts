@@ -1,0 +1,27 @@
+/* Weibo Cleaner
+ * Troy
+ */
+
+@-moz-document domain("weibo.com") {
+    .gn_nav_list .home .S_txt1 {display:none;}
+    .WB_cardwrap { border-radius: 0; box-shadow: none; margin: 0; }
+    .WB_feed_handle .WB_row_line { border-bottom: 0px solid #f2f2f5; }
+    .WB_notes { margin: 0; padding: 0px 0; }
+    .send_weibo .key, .v6_pl_rightmod_updatev6, #v6_pl_rightmod_recominfo, #v6_trustPagelet_recom_member, #v6_pl_rightmod_noticeboard, #v6_pl_rightmod_updatev6, .WB_right_module, .PCD_mplayer, #WB_webim {
+    display: none; }
+    .send_weibo { border-radius: 0; margin: 0; }
+    .WB_feed_together { display:none; }
+    .WB_main_r { display:none;}
+    .WB_main_l { display:none;}
+    .WB_main_c { width: 760px;}
+    .fr_box.W_fr.S_bg2{width: 460px;}
+    .WB_frame #plc_main { width:760px; }
+    .WB_frame { width:760px; }
+    .WB_feed .WB_cardwrap { margin-bottom:0; border-bottom:0px solid #EEE }
+    .WB_frame { background: transparent; }  
+    .WB_left_nav .S_txt1, .WB_left_nav a.S_txt1:hover, .WB_left_nav .S_ficon, .WB_left_nav a:hover .S_ficon, .WB_left_nav a.S_ficon:hover, .WB_left_nav .lev .W_new_count { color:#555;}
+    .WB_global_nav { border-top : none; background: #323233; }
+    .gn_nav_list a[nm="game"] { display:none; }
+    .footer_link.clearfix {display:none;}
+}
+

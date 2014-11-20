@@ -1,0 +1,10 @@
+/* Zhihu Ads Cleaner
+ * Troy
+ */
+
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("zhihu.com") {
+  div.zm-side-section.zm-side-list-content.zm-side-pinned-topics{display:none;}
+  div[id^="shameimaru-"]{display:none;}
+}
