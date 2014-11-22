@@ -1,3 +1,4 @@
+
 /* Weibo Cleaner
  * Troy
  */
@@ -25,7 +26,8 @@
     div[node-type="feed_spread"] {display:none;} /* 好友推荐 */
     div[node-type="feed_privateset_tip"] {display:none;} /*微博社区管理中心*/
     
-    i[class^="W_icon icon_"] {display:none;} /* 各种头衔图标 */
+    /* 各种头衔图标 */
+    i[class^="W_icon icon_"] {display:none;} 
     i[class^="W_icon icon_praised_b"] {display:inline-block;}
     i[class^="W_icon icon_praised_bc"] {display:inline-block;}
     
@@ -39,11 +41,14 @@
     a[suda-uatrack="key=topnav_tab&value=discover"] {display:none !important;} /* 顶部导航栏——发现 */
     a[suda-uatrack="key=topnav_tab&value=game"] {display:none !important;} /* 顶部导航栏——游戏 */
     .WB_global_nav .gn_nav{margin: 11px -40px 11px 0px;} /* 导航栏右移一点点 */
+    .WB_global_nav{position:absolute;}
     
     /* 干掉左上角图标 */
     .WB_global_nav .gn_logo .box .logo {background-image: url('http://tp4.sinaimg.cn/1859288007/180/5682323271/1'); background-size:48px 48px; width: 48px; border-radius: 50%;} 
     .WB_global_nav .gn_logo .box {width:48px; height:48px;}
     .WB_global_nav .gn_logo {width:48px;margin-left:16px;margin-right:80px;}
     
+    /* 新消息提醒 */
+    .WB_notes{background:#232324;}
 }
 

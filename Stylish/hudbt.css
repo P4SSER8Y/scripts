@@ -1,0 +1,15 @@
+/* HUDBT
+ * Troy
+ */
+
+body{ 
+  background-image: url(http://ww4.sinaimg.cn/large/6ed27bc7jw1eegjagzozzj20zk0m8jyz.jpg);
+  background-position: center; 
+  background-attachment: fixed; 
+  background-size:cover;
+} 
+
+#page{background-color:;position:relative;box-shadow:0 0 0px #55aa55}
+td{border:#6666CC 0px solid} 
+
+div#donate{display:none !important;}
