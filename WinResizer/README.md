@@ -7,7 +7,7 @@ Windows窗口排列工具
 + 适用系统：Win XP/7/8.1
 + 外部库：
     - [GDI+](http://www.autohotkey.com/board/topic/29449-gdi-standard-library-145-by-tic/) By tic (Tariq Porter)
-    - SmartGUI By Rajat
+    - [SmartGUI Creator](http://www.autohotkey.com/board/topic/738-smartgui-creator/) By Rajat
 + 编辑注释：建议使用Vim编辑并:set foldmethod=marker
 + 开发日志：
     - 2014.11.20 确认Win8.1可以正常使用，原因不明
