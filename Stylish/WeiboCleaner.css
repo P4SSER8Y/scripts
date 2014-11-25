@@ -50,5 +50,8 @@
     
     /* 新消息提醒 */
     .WB_notes{background:#232324;}
+
+    /* 干掉发布栏 */
+    div[id$="pl_content_publishertop"]{display:none !important;}
 }
 
