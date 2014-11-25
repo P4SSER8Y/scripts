@@ -53,5 +53,6 @@
 
     /* 干掉发布栏 */
     div[id$="pl_content_publishertop"]{display:none !important;}
+    .WB_tab_a{margin:0px 0px 0px 0px;}
 }
 
