@@ -1,15 +1,35 @@
 /* HUDBT
  * Troy
+ * https://userstyles.org/styles/107532/hudbt-style
  */
 
-body{ 
-  background-image: url(http://ww4.sinaimg.cn/large/6ed27bc7jw1eegjagzozzj20zk0m8jyz.jpg);
-  background-position: center; 
-  background-attachment: fixed; 
-  background-size:cover;
-} 
+@-moz-document domain("hudbt.hust.edu.cn") {
 
-#page{background-color:;position:relative;box-shadow:0 0 0px #55aa55}
-td{border:#6666CC 0px solid} 
+  body{ 
+    background-image: url(/*[[hudbtbgimg]]*/);        /* 背景图像 */
+    background-position: center;                    /* 背景样式 */
+    background-attachment: fixed;                   /* 背景样式 */
+    background-size:cover;                          /* 背景样式 */
+  } 
 
-div#donate{display:none !important;}
+  #page{position:relative;box-shadow:0 0 0px #000}  /* 去除外边框 */
+
+  td{border:#6666CC 0px solid}                      /* 隐藏列表边框 */
+  .td{border:0px;}
+
+  div#donate{display:none !important;}              /* 隐藏捐赠按钮 */
+  
+  img#logo-img{display:none !important;}            /* 隐藏logo */
+
+  div#ad_header{display:none !important;}           /* 隐藏广告头部 */
+
+  header{display:none !important;}                  /* 隐藏整个顶部banner */
+
+  .table{background-color:rgba(198,227,198,0.5);}   /* 半透明背景 */
+  table{background-color:rgba(198,227,198,0.5);}
+  table.no-vertical-line tr:nth-of-type(2n) td
+    {background-color:rgba(224,235,216,0.5);border:0px;}
+  #back-to-top{border-radius:50%;opacity:0.5;}      /* 回到顶部 */
+  
+  #promotionmain{display:none;}                     /* 默认关闭宣传横幅 */
+}
