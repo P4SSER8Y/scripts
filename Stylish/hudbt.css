@@ -16,6 +16,8 @@
 
   td{border:#6666CC 0px solid}                      /* 隐藏列表边框 */
   .td{border:0px;}
+  dl.table{border:0px;}
+  .poll:first-child, .forum-post:first-child{border:0px;}
 
   div#donate{display:none !important;}              /* 隐藏捐赠按钮 */
   

@@ -1,4 +1,4 @@
-/* Baidu ads cleaner
+/* Baidu
  * Troy
  */
 
@@ -10,4 +10,10 @@
   a[class^="c-btn"]{display:none;}
   p[class="to_tieba"]{display:none !important;}
   div[id="s_icons"]{display:none !important;}
+  #content_left .result-op:hover, #content_left .result:hover
+  {
+    background:rgba(235,235,235,0.7);
+  }
+  div[class^="s-tips"]{display:none !important;}
+  a[class^="s-set-page"]{display:none !important;}
 }
