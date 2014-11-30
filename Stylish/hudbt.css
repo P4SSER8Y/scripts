@@ -14,7 +14,7 @@
 
   #page{position:relative;box-shadow:0 0 0px #000}  /* 去除外边框 */
 
-  td{border:#6666CC 0px solid}                      /* 隐藏表格边框 */
+  td{border:#6666CC 0px solid}                      /* 隐藏列表边框 */
   .td{border:0px;}
   dl.table{border:0px;}
   .poll:first-child, .forum-post:first-child{border:0px;}
@@ -27,21 +27,11 @@
 
   header{display:none !important;}                  /* 隐藏整个顶部banner */
 
-  .table{background-color:rgba(198,227,198,0);}     /* 全透明背景 */
-  #searchbox-cats table{background-color:rgba(198,227,198,0);}
+  .table{background-color:rgba(198,227,198,0.5);}   /* 半透明背景 */
   table{background-color:rgba(198,227,198,0.5);}
-  
-  /* 搜索框边界 */
-  #searchbox-header {border-bottom:0px;}
-  
-  /* 种子列表半透明背景 */
   table.no-vertical-line tr:nth-of-type(2n) td
     {background-color:rgba(224,235,216,0.5);border:0px;}
-  
-  #back-to-top{border-radius:50%;opacity:0.5;}      /* 回到顶部：半透明，圆形 */
+  #back-to-top{border-radius:50%;opacity:0.5;}      /* 回到顶部 */
   
   #promotionmain{display:none;}                     /* 默认关闭宣传横幅 */
-  
-  #nav a{border-width:0px;border-radius:0px;}                         /* 标签：矩形，无边框 */
 }
-
