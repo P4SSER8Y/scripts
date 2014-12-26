@@ -3,11 +3,11 @@
 return
 
 DEADLOOP:
-    i+=1
     send ,^v
     send , {Space} {x}%i%
     send , {Enter}
     tooltip ,%i%
+    i+=1
 return
 
 $z::
